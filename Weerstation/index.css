@@ -320,11 +320,48 @@ body {
 	background-size: .65em auto, 100%;
 }
 
+.stationtable {
+	font-family: Arial, Helvetica, sans-serif;
+	border-collapse: collapse;
+	width: 50%;
+}
 
+.stationtable td{
+	border: 1px solid #ddd;
+	padding: 8px;
+}
 
+.stationtable th{
+	border: 1px solid #ddd;
+	padding: 8px;
+	padding-top: 12px;
+	padding-bottom: 12px;
+	text-align: left;
+	background-color: #1a4ead;
+	color: white;
+}
 
+.stationtable tr:nth-child(even){background-color: #f2f2f2;}
 
+.stationtable tr:hover {background-color: #ddd;}
 
+.stationcountry{
+	position: absolute;
+	top: 270px;
+	right: 250px;
+}
+
+.currentcountry{
+	position: absolute;
+	top: 200px;
+	right: 550px;
+}
+
+.stationnumbernumber{
+	position: absolute;
+	top: 360px;
+	right: 630px;
+}
 
 
 
