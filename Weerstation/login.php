@@ -8,9 +8,10 @@
 <body>
   <div class="header">
   	<h2>Login</h2>
+
   </div>
-	 
-  <form method="post" action="login.php">
+
+  <form name="formulier" method="post" action="inloggen.php">
       <a class='button1' href='login.php'><img src="pictures/logo.png" width="100%"></a>
   	<div class="input-group">
   		<label>User</label>
