@@ -1,7 +1,7 @@
 <html>
 	<body>
-		<ul class="nav">
-			<div class="foto">
+		<ul class="navBar">
+			<div class="photo">
 				<img src="sandwich.jpg">
 			</div>
 			<li><a href="index.php">Home</a></li>

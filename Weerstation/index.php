@@ -1,42 +1,41 @@
 <?php session_start(); ?>
-<html>
+<html lang="eng">
 	<head>
 		<title> Aitken Spence Weather </title>
 		<link rel="stylesheet" type="text/css" href="index.css">
 	</head>
 
 	<body>
-		<ul class="nav">
-			<div class="foto">
-				<a class='button1' href='index.php'><img src="pictures/diamond.png"></a>
+		<ul class="navBar">
+			<div class="photo">
+				<a class='button1' href='index.php'><img src="pictures/diamond.png" alt="diamond"></a>
 			</div>
 			<div class='btn-group'>	
 				<a class="button1" href="index.php">Home</a>
 
 				<?php
-//					require('database.lib.php');
-//					$dbConnection = dbConnect();
-//					$sessienummerextra = $_SESSION['persoon'];
-//					if(empty($sessienummerextra)){
-//						print('<a class="button2" href="registreren1.php" >Registreren</a>');
-//						print('<a class="button2" href="inloggen1.php" >Inloggen</a>');
-//					} else {
-//						print('<a class="button2" href="sessionend.php" >uitloggen</a>');
-//						$sessienummer = $_SESSION['persoon'];
-//						if(isset($sessienummer)){
-//							$sql = 'select gebruikersid from gebruiker where admin = 1';
-//							$result = mysqli_query($dbConnection,$sql);
-//							while($row = mysqli_fetch_array($result)){
-//								if($row["gebruikersid"] == $sessienummer){
-//									print('<a class="button1" href="adminmain.php">Admin</a>');
-//									$admin = true;
-//								}
-//							}
-//						}
-//						if(!$admin){
-//							print('<a class="button1" href="bestelgesch.php">Bestelgeschiedenis</a>');
-//						}
-//					}
+					require('database.lib.php');
+					$dbConnection = dbConnect();
+					$sessienummerextra = $_SESSION['persoon'];
+					if(empty($sessienummerextra)){
+					    header("Location: login.php", true, 301);
+					} else {
+						print('<a class="button2" href="sessionend.php" >uitloggen</a>');
+						$sessienummer = $_SESSION['persoon'];
+						if(isset($sessienummer)){
+							$sql = 'select gebruikersid from gebruiker where admin = 1';
+							$result = mysqli_query($dbConnection,$sql);
+							while($row = mysqli_fetch_array($result)){
+								if($row["gebruikersid"] == $sessienummer){
+									print('<a class="button1" href="adminmain.php">Admin</a>');
+									$admin = true;
+								}
+							}
+						}
+						if(!$admin){
+							print('<a class="button1" href="bestelgesch.php">Bestelgeschiedenis</a>');
+						}
+					}
 				
 				?>
 			</div>
