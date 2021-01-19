@@ -1,7 +1,7 @@
 <?php session_start(); ?>
 <html>
 	<head>
-		<title> Aitken Spence Weather </title>
+		<title> Aitken Spence Weathera </title>
 		<link rel="stylesheet" type="text/css" href="index.css">
 	</head>
 
