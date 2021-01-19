@@ -1,8 +1,8 @@
-<?php include('server.php') ?>
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Registration system PHP and MySQL</title>
+  <title>Aitken Spence Login</title>
   <link rel="stylesheet" type="text/css" href="login.css">
 </head>
 <body>
@@ -11,21 +11,18 @@
   </div>
 	 
   <form method="post" action="login.php">
-  	<?php include('errors.php'); ?>
+      <a class='button1' href='login.php'><img src="pictures/logo.png" width="100%"></a>
   	<div class="input-group">
-  		<label>Voornaam</label>
-  		<input type="text" name="voornaam" >
+  		<label>User</label>
+  		<input type="text" name="user" >
   	</div>
   	<div class="input-group">
-  		<label>achternaam</label>
-  		<input type="text" name="achternaam">
+  		<label>Password</label>
+  		<input type="text" name="password">
   	</div>
   	<div class="input-group">
-  		<button type="submit" class="btn" name="bestel">Plaat je bestelling!</button>
+  		<button type="submit" class="btn" name="bestel">Log in</button>
   	</div>
-  	<p>
-  		Not yet a member? <a href="register.php">Sign up</a>
-  	</p>
   </form>
 </body>
 </html>
