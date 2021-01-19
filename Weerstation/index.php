@@ -31,11 +31,11 @@
 			<?php
 				$query = "SELECT DISTINCT country FROM stations ORDER BY country";
 				$result = mysqli_query($dbConnection, $query);
-				print("<form method='post' action='station.php'><select id='country'");
+				print("<form method='post' action='station.php'><select id='country' class='select-css'");
 				while($row = mysqli_fetch_array($result))(
 				        print("<option value='{$row['country']}'>".$row['country']."</option>")
                 );
-				print("</select><input type='submit' value='Select Country'></form>");
+				print("</select ><input type='submit' class='btn' value='Select Country'></form>");
 			dbDisconnect($dbConnection); ?>
             </div>";
 		</div>
