@@ -1,0 +1,307 @@
+body {
+	
+	margin: 0;
+	padding: 0;
+	font-family: 'arial', serif;
+}
+
+.nav {
+    background-color:#1a4ead;
+    color:white;
+	margin:  0 0px 30px 0px;
+    list-style: none;
+    text-align: center;
+    padding: 0 0 30px 0;
+	height:69px;
+	
+
+}
+
+.nav1 {
+    background-color:#1a4ead;
+    color:white;
+	margin:  -30px 0px 30px 0px;
+    list-style: none;
+    text-align: left;
+	height: 40px;
+	display: inline-block;
+	width:100%;
+	padding: 0;
+}
+.foto img{
+	width:95px;
+	height:95px;
+	float: left;
+}
+	
+.backbox {
+	text-align: center;
+	padding: 30px;
+	margin: 20px,0px,20px,0px;
+	background-color: #1a4ead;
+	float: center;
+}
+
+.backbox2 {
+	text-align: left;
+	padding: 30px;
+	margin: 20px,0px,20px,0px;
+	background-color: #1a4ead;
+	float: center;
+}
+
+
+.backbox10 {
+	text-align: center;
+	padding: 30px;
+	margin: 20px;
+	background-color: #1a4ead;
+	margin-left: 460px;
+	margin-right: 460px;
+}
+
+.hbbox {
+	font:  bold 30px/30px arial, serif;
+	margin: 30px;
+	padding: 30px;
+	background-color: white;
+	
+}
+
+.breadbox{
+	
+	font:  bold 20px/30px arial, serif;
+	display: inline-block;
+	border: 5px solid #1a4ead;
+	padding: 10px;
+	width: 295px;
+	height: 230px;
+	margin: 10px;
+	background-color: white;
+	
+}
+
+.breadbox2{
+	display: inline-block;
+	border-right: 20px solid #1a4ead;
+	padding: 10px;
+	width: 490px;
+	height: 320px;
+	margin: -10 30px -10px -10px;
+	background-color: white;
+	
+}
+.ingredient{
+	font:  bold 20px/30px arial, serif;
+	display: flex;
+	padding: 10px;
+	height: 320px;
+	margin: 20px;
+	background-color: white;
+	
+}
+
+.toevoegen{
+	
+        list-style-type: none;
+	
+	float: left;
+	padding-top: -10px;
+	
+}
+
+.toevoegen li a{
+	text-decoration: none;
+}
+
+.aanpassen{
+	list-style-type: none;
+}
+
+.aanpassen li a{
+	text-decoration: none;
+}
+
+.slider {
+	overflow:hidden;
+}
+
+.slider figure div {
+	width:20%;
+	float:left;
+	
+	
+}
+
+.slider figure div img {
+	width:100%;
+	float:left;
+
+}
+
+.slider figure {
+	position:relative;
+	width:500%;
+	left:0;
+	margin:0;
+	animation: 20s sliding infinite;
+	
+}
+
+
+@keyframes sliding {
+	0%{
+		left:0%;
+	}
+	
+	30%{
+		left:0%;
+	}
+	
+	33%{
+		left:-100%;
+	}
+	
+	63%{
+		left:-100%;
+	}
+	
+	66%{
+		left:-200%;
+	}
+	
+	96%{
+		left:-200%;
+	}
+	
+	100%{
+		left:0%;
+	}
+}
+
+
+
+
+.button10 {
+  display: inline-block;
+  padding: 5px 10px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: left;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: white;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+  z-index: -1;
+  margin-right: 8px;
+}
+
+.button10:hover {background-color: #1a4ead}
+
+.button10:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+} 
+
+.bestelkopje {
+	margin-left: 160px;
+}
+
+.broodjekop {
+	margin-left: -195px;
+}
+
+.datumbes {
+	position: absolute;
+	float: left;
+	margin-top: 65px;
+}
+
+
+.btn-group .button1 {
+  background-color: #1a4ead;
+  border: none;
+  color: white;
+  margin-bottom:30px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  padding: 32.5px 16px;
+  font-size: 30px;
+  cursor: pointer;
+  float: left;
+}
+
+.btn-group .button1:hover {
+  background-color: #4d8cff;
+}
+
+.btn-group .button2 {
+  background-color: #1a4ead;
+  border-radius: 2px;
+  color: white;
+  float:right;
+  text-align: center;
+  text-decoration: none;
+  display:block;
+  padding: 16.25px 16px;
+  font-size: 15px;
+  cursor: pointer;
+  margin: 22.5px 22.5px 0 -10px;
+}
+
+.btn-group .button2:hover {
+  background-color: #4d8cff
+}
+
+.btn-group .button3 {
+  background-color: #1a4ead;
+  color: white;
+  float:right;
+  text-align: center;
+  text-decoration: none;
+  display:inline-block;
+  padding: 11px 16px;
+  font-size: 16px;
+  cursor: pointer;
+  float:left;
+}
+
+.btn-group .button3:hover {
+  background-color: #4d8cff
+}
+
+.btn-group .button4 {
+  background-color: #1a4ead;
+  border: 0;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display:inline-block;
+  padding: 11px 16px;
+  font-size: 16px;
+  cursor: pointer;
+
+}
+
+.btn-group .button4:hover {
+  background-color: #4d8cff
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
