@@ -45,7 +45,7 @@ form, .content {
   border: 1px solid #1a4ead;
   color: #1a4ead;
 }
-.btn {
+.submitButton {
   padding: 10px;
   font-size: 15px;
   color: white;

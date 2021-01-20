@@ -22,7 +22,7 @@
         <input type="text" name="password">
     </div>
     <div class="input-group">
-        <button type="submit" class="btn" name="bestel">Log in</button>
+        <button type="submit" class="submitButton" name="bestel">Log in</button>
     </div>
 </form>
 </body>

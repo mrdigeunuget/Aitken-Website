@@ -4,6 +4,6 @@
     session_destroy();
 	echo "<script>
           alert('succesvol uitgelogd, klik op OK om naar de home pagina te gaan');
-          window.location.href='index.php';
+          window.location.href='login.php';
          </script>"; 
 ?>

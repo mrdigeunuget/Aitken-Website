@@ -7,10 +7,11 @@
     <body>
 <ul class="navBar">
     <div class="photo">
-        <a class='button1' href='index.php'><img src="pictures/diamond.png" alt="diamond"></a>
+        <a href='index.php'><img src="pictures/diamond.png" alt="diamond"></a>
     </div>
     <div class='btn-group'>
-        <a class="button1" href="index.php">Home</a>
+        <a href="index.php">Home</a>
+        <a class="active" href="station.php">Station</a>
 
         <?php
         require('database.lib.php');
@@ -19,7 +20,7 @@
         if(empty($sessienummerextra)){
             header("Location: login.php", true, 301);
         } else {
-            print('<a class="button1" href="sessionend.php" >Log out</a>');
+            print('<a class="logButton" href="sessionend.php" >Log out</a>');
             $sessienummer = $_SESSION['persoon'];
         }
         ?>
@@ -100,21 +101,14 @@ if(isset($_POST['stationnumber'])) {
 print("<div class='stationcountry'>");
 				$query = "SELECT DISTINCT country FROM stations ORDER BY country";
 				$result = mysqli_query($dbConnection, $query);
-				print("<form method='post' action='station.php'><select id='country' class='select-css' name='country'");
+				print("<form method='post' action='station.php'><select id='country' class='selectCountry' name='country'");
 				while($row = mysqli_fetch_array($result))(
 				        print("<option value='{$row['country']}'>".$row['country']."</option>")
                 );
-				print("</select ><input type='submit' class='btn' value='Select Country'></form>");
+				print("</select ><input type='submit' class='submitButton' value='Select Country'></form>");
 			dbDisconnect($dbConnection);
 print("</div>");
 ?>
-
-    <div class='stationnumbernumber'>
-        <form method='post' action='station.php'>
-            <label for="stationnumber">Stationnumber</label><br>
-            <input type="text" id="stationnumber" name="stationnumber"><br>
-            <input type='submit' class='btn' value='Search Stationnumber'></form>
-    </div>
     </body>
     </html>
 
