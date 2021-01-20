@@ -38,44 +38,41 @@
                 print("</select ><input type='submit' class='submitButton' value='Select Country'></form>");
                 ?>
             </div>
-        </div>
-        <?php
-            if(isset($_POST['country'])) {
-                $stationland = $_POST['country'];
-                $sql = "SELECT * FROM stations
-                        WHERE country = '$stationland'";
-                if ($result = mysqli_query($dbConnection, $sql)) {
-                    if ($result->num_rows > 0) {
-                        echo "<table class='stationtable'>";
-                        echo "<tr>";
-                        echo "<th>Number</th>";
-                        echo "<th>Name</th>";
-                        echo "<th>Country</th>";
-                        echo "<th>Latitude</th>";
-                        echo "<th>Longitude</th>";
-                        echo "<th>Elevation</th>";
-                        echo "</tr>";
-                        while ($row = mysqli_fetch_array($result)) {
+            <?php
+                if(isset($_POST['country'])) {
+                    $stationland = $_POST['country'];
+                    $sql = "SELECT * FROM stations
+                            WHERE country = '$stationland'";
+                    if ($result = mysqli_query($dbConnection, $sql)) {
+                        if ($result->num_rows > 0) {
+                            echo "<table class='stationTable'>";
                             echo "<tr>";
-                            echo "<td>" . $row['stn'] . "</td>";
-                            echo "<td>" . $row['name'] . "</td>";
-                            echo "<td>" . $row['country'] . "</td>";
-                            echo "<td>" . $row['latitude'] . "</td>";
-                            echo "<td>" . $row['longitude'] . "</td>";
-                            echo "<td>" . $row['elevation'] . "</td>";
+                            echo "<th>Number</th>";
+                            echo "<th>Name</th>";
+                            echo "<th>Country</th>";
+                            echo "<th>Latitude</th>";
+                            echo "<th>Longitude</th>";
+                            echo "<th>Elevation</th>";
                             echo "</tr>";
+                            while ($row = mysqli_fetch_array($result)) {
+                                echo "<tr>";
+                                echo "<td>" . $row['stn'] . "</td>";
+                                echo "<td>" . $row['name'] . "</td>";
+                                echo "<td>" . $row['country'] . "</td>";
+                                echo "<td>" . $row['latitude'] . "</td>";
+                                echo "<td>" . $row['longitude'] . "</td>";
+                                echo "<td>" . $row['elevation'] . "</td>";
+                                echo "</tr>";
+                            }
+                            echo "</table>";
+                        } else {
+                            print("Er ging iets fout");
                         }
-                        echo "</table>";
                     } else {
-                        print("Er ging iets fout");
+                        print("iets met de verbinding");
                     }
-                } else {
-                    print("iets met de verbinding");
                 }
-                print("<div class= 'currentcountry'>
-                        Current country: $stationland
-                    </div>");
-            }
-        ?>
+            ?>
+        </div>
     </body>
 </html>

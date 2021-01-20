@@ -32,7 +32,7 @@
                         WHERE country = '$stationland'";
                 if ($result = mysqli_query($dbConnection, $sql)) {
                     if ($result->num_rows > 0) {
-                        echo "<table class='stationtable'>";
+                        echo "<table class='stationTable'>";
                         echo "<tr>";
                         echo "<th>Number</th>";
                         echo "<th>Name</th>";
@@ -68,7 +68,7 @@
                         WHERE stn = '$stationnumber'";
                 if ($result = mysqli_query($dbConnection, $sql)) {
                     if ($result->num_rows > 0) {
-                        echo "<table class='stationtable'>";
+                        echo "<table class='stationTable'>";
                         echo "<tr>";
                         echo "<th>Number</th>";
                         echo "<th>Name</th>";

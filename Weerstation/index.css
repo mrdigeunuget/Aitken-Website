@@ -104,48 +104,39 @@ body {
 	border-radius: 5px;
 }
 
-.stationtable {
+.stationTable {
 	font-family: Arial, Helvetica, sans-serif;
 	border-collapse: collapse;
 	width: 50%;
+	margin: auto;
 }
 
-.stationtable td{
+.stationTable td{
 	border: 1px solid #ddd;
 	padding: 8px;
 }
 
-.stationtable th{
+.stationTable th{
 	border: 1px solid #ddd;
-	padding: 8px;
-	padding-top: 12px;
-	padding-bottom: 12px;
+	padding: 12px 8px;
 	text-align: left;
-	background-color: #1a4ead;
+	background-color: #3775e6;
 	color: white;
 }
 
-.stationtable tr:nth-child(even){background-color: #f2f2f2;}
-
-.stationtable tr:hover {background-color: #ddd;}
-
-.stationcountry{
-	position: absolute;
-	top: 270px;
-	right: 250px;
+.stationTable tr{
+	background-color: #dddddd;
 }
 
-.currentcountry{
-	position: absolute;
-	top: 200px;
-	right: 550px;
+.stationTable tr:nth-child(even){
+	background-color: #f2f2f2;
 }
 
-.stationnumbernumber{
-	position: absolute;
-	top: 360px;
-	right: 630px;
+.stationTable tr:hover {
+	background-color: grey;
 }
+
+
 
 
 
