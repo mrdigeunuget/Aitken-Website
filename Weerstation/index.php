@@ -7,7 +7,7 @@
     <body>
         <ul class="navBar">
             <div class="photo">
-                <a href='index.php'><img src="pictures/diamond.png" alt="diamond"></a>
+                <a href='index.php'><img src="pictures/logoWhite.png" alt="diamond"></a>
             </div>
             <div class='btn-group'>
                 <a class="active" href="index.php">Home</a>
