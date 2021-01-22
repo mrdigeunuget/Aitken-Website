@@ -1,5 +1,5 @@
 <?php session_start(); ?>
-<html>
+<html lang="eng">
     <head>
         <title>Log in</title>
     </head>
@@ -17,15 +17,15 @@
             if($result->num_rows > 0){
                 $row = $result->fetch_assoc();
                 $_SESSION['persoon'] = 1;
-                echo "<script>
+                print ("<script>
                       alert('succesvol ingelogd, klik op OK om te bestellen');
                       window.location.href='index.php';
-                     </script>";
+                     </script>");
             }else {
-                echo "<script>
+                print ("<script>
                       alert('verkeerde wachtwoord of gebruikersnaam, probeer het opnieuw');
                       window.location.href='login.php';
-                     </script>";
+                     </script>");
             }
         ?>
     </body>

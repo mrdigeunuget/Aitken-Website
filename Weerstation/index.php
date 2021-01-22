@@ -33,7 +33,7 @@
                 $result = mysqli_query($dbConnection, $query);
                 print("<form method='post' action=''><select id='country' class='selectCountry' name='country'>");
                 while($row = mysqli_fetch_array($result))(
-                print("<option value='{$row['country']}'>".$row['country']."</option>")
+                print("<option value='{$row['country']}'>{$row['country']}</option>")
                 );
                 print("</select ><input type='submit' class='submitButton' value='Select Country'></form>");
                 ?>
@@ -46,32 +46,31 @@
                     if ($result = mysqli_query($dbConnection, $sql)) {
                         echo "<form method='post' action='station.php'>";
                         if ($result->num_rows > 0) {
-                            echo "<table class='stationTable'>";
-                            echo "<tr>";
-                            echo "<th>Number</th>";
-                            echo "<th>Name</th>";
-                            echo "<th>Country</th>";
-                            echo "<th>Latitude</th>";
-                            echo "<th>Longitude</th>";
-                            echo "<th>Elevation</th>";
-                            echo "</tr>";
+                            print ("<table class='stationTable'>
+                                        <tr>
+                                            <th>Number</th>
+                                            <th>Name</th>
+                                            <th>Country</th>
+                                            <th>Latitude</th>
+                                            <th>Longitude</th>
+                                            <th>Elevation</th>
+                                        </tr>");
                             while ($row = mysqli_fetch_array($result)) {
-                                echo "<tr>";
-                                echo "<td><input type='submit' class='stnButton' name='stn' value='{$row['stn']}'></td>";
-                                echo "<td>" . $row['name'] . "</td>";
-                                echo "<td>" . $row['country'] . "</td>";
-                                echo "<td>" . $row['latitude'] . "</td>";
-                                echo "<td>" . $row['longitude'] . "</td>";
-                                echo "<td>" . $row['elevation'] . "</td>";
-                                echo "</tr>";
+                                print ("<tr>
+                                            <td><input type='submit' class='stnButton' name='stn' value='{$row['stn']}'></td>
+                                            <td>{$row['name']}</td>
+                                            <td>{$row['country']}</td>
+                                            <td>{$row['latitude']}</td>
+                                            <td>{$row['longitude']}</td>
+                                            <td>{$row['elevation']}</td>
+                                        </tr>");
                             }
-                            echo "</table>";
+                            print ("</form></table>");
                         } else {
-                            print("Er ging iets fout");
+                            print ("Er ging iets fout");
                         }
-                        echo "</form>";
                     } else {
-                        print("iets met de verbinding");
+                        print ("iets met de verbinding");
                     }
                 }
             ?>

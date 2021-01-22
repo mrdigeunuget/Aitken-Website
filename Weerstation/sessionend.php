@@ -2,8 +2,8 @@
     session_start();
     $_SESSION = array();
     session_destroy();
-	echo "<script>
+	print ("<script>
           alert('succesvol uitgelogd, klik op OK om naar de home pagina te gaan');
           window.location.href='login.php';
-         </script>"; 
+         </script>");
 ?>
