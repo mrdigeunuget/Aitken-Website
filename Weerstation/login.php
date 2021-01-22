@@ -1,6 +1,5 @@
 <?php session_start(); ?>
-<!DOCTYPE html>
-<html>
+<html lang="eng">
     <head>
         <title>Aitken Spence Login</title>
         <link rel="stylesheet" type="text/css" href="login.css">
@@ -10,14 +9,16 @@
             <h2>Login</h2>
         </div>
         <form name="formulier" method="post" action="inloggen.php">
-            <a class='button1' href='login.php'><img src="pictures/logo.png" width="100%"></a>
+            <a href='login.php'><img class='logoImg' src="pictures/logo.png" alt="logo"></a>
             <div class="input-group">
-                <label>User</label>
-                <input type="text" name="user" >
+                <label>User
+                    <input type="text" name="user" >
+                </label>
             </div>
             <div class="input-group">
-                <label>Password</label>
-                <input type="password" name="password">
+                <label>Password
+                    <input type="password" name="password">
+                </label>
             </div>
             <div class="input-group">
                 <button type="submit" class="submitButton" name="bestel">Log in</button>

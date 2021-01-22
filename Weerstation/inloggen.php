@@ -27,6 +27,7 @@
                       window.location.href='login.php';
                      </script>");
             }
+            dbDisconnect($dbConnection);
         ?>
     </body>
 </html>

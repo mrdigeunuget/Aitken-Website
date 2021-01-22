@@ -74,6 +74,7 @@
                 } else {
                     print("iets met de verbinding");
                 }
+                dbDisconnect($dbConnection);
                 print("<div class= 'currentcountry'> 
                     Current country: $stn
                     </div>");

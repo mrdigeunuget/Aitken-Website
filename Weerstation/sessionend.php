@@ -6,4 +6,3 @@
           alert('succesvol uitgelogd, klik op OK om naar de home pagina te gaan');
           window.location.href='login.php';
          </script>");
-?>

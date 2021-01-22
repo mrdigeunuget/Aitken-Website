@@ -24,7 +24,7 @@ form, .content {
   padding: 20px;
   border: 1px solid #1a4ead;
   background: white;
-  border-radius: 0px 0px 10px 10px;
+  border-radius: 0 0 10px 10px;
 }
 .input-group {
   margin: 50px 10px 20px 10px;
@@ -45,6 +45,11 @@ form, .content {
   border: 1px solid #1a4ead;
   color: #1a4ead;
 }
+
+.logoImg {
+  display: block;
+  margin: auto;
+}
 .submitButton {
   padding: 10px;
   font-size: 15px;
@@ -55,7 +60,7 @@ form, .content {
 }
 .error {
   width: 92%; 
-  margin: 0px auto; 
+  margin: 0 auto;
   padding: 10px; 
   border: 1px solid #a94442; 
   color: #a94442; 

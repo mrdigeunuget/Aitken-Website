@@ -10,4 +10,3 @@
 	function dbDisconnect($db_conn){
 		mysqli_close($db_conn);
 	}
-?>

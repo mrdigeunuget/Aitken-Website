@@ -72,6 +72,7 @@
                     } else {
                         print ("iets met de verbinding");
                     }
+                    dbDisconnect($dbConnection);
                 }
             ?>
         </div>
