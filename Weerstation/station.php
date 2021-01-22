@@ -25,31 +25,47 @@
                 ?>
             </div>
         </ul>
+        <div class="backbox">
         <?php
-            if(isset($_POST['country'])) {
-                $stationland = $_POST['country'];
-                $sql = "SELECT * FROM stations
-                        WHERE country = '$stationland'";
+            if(isset($_POST['stn'])) {
+                $stn = $_POST['stn'];
+                $sql = "SELECT * FROM data
+                        WHERE stn = '$stn'
+                        GROUP BY time";
                 if ($result = mysqli_query($dbConnection, $sql)) {
                     if ($result->num_rows > 0) {
-                        echo "<table class='stationTable'>";
-                        echo "<tr>";
-                        echo "<th>Number</th>";
-                        echo "<th>Name</th>";
-                        echo "<th>Country</th>";
-                        echo "<th>Latitude</th>";
-                        echo "<th>Longitude</th>";
-                        echo "<th>Elevation</th>";
-                        echo "</tr>";
+                        echo "<table class='stationTable'>
+                                <tr>
+                                    <th>stn</th>
+                                    <th>time</th>
+                                    <th>date</th>
+                                    <th>temp</th>
+                                    <th>dewp</th>
+                                    <th>visib</th>
+                                    <th>wdsp</th>
+                                    <th>prcp</th>
+                                    <th>sndp</th>
+                                    <th>frshtt</th>
+                                    <th>cldc</th>
+                                    <th>wnddir</th>
+                                    <th>slp</th>                                    
+                                </tr>";
                         while ($row = mysqli_fetch_array($result)) {
-                            echo "<tr>";
-                            echo "<td>" . $row['stn'] . "</td>";
-                            echo "<td>" . $row['name'] . "</td>";
-                            echo "<td>" . $row['country'] . "</td>";
-                            echo "<td>" . $row['latitude'] . "</td>";
-                            echo "<td>" . $row['longitude'] . "</td>";
-                            echo "<td>" . $row['elevation'] . "</td>";
-                            echo "</tr>";
+                            echo "<tr>
+                                    <td>{$row['stn']}</td>
+                                    <td>{$row['time']}</td>
+                                    <td>{$row['date']}</td>
+                                    <td>{$row['temp']}</td>
+                                    <td>{$row['dewp']}</td>
+                                    <td>{$row['visib']}</td>
+                                    <td>{$row['wdsp']}</td>
+                                    <td>{$row['prcp']}</td>
+                                    <td>{$row['sndp']}</td>
+                                    <td>{$row['frshtt']}</td>
+                                    <td>{$row['cldc']}</td>
+                                    <td>{$row['wnddir']}</td>
+                                    <td>{$row['slp']}</td>                                    
+                                  </tr>";
                         }
                         echo "</table>";
                     } else {
@@ -59,53 +75,11 @@
                     print("iets met de verbinding");
                 }
                 print("<div class= 'currentcountry'> 
-                    Current country: $stationland
+                    Current country: $stn
                     </div>");
             }
-            if(isset($_POST['stationnumber'])) {
-                $stationnumber = $_POST['stationnumber'];
-                $sql = "SELECT * FROM stations
-                        WHERE stn = '$stationnumber'";
-                if ($result = mysqli_query($dbConnection, $sql)) {
-                    if ($result->num_rows > 0) {
-                        echo "<table class='stationTable'>";
-                        echo "<tr>";
-                        echo "<th>Number</th>";
-                        echo "<th>Name</th>";
-                        echo "<th>Country</th>";
-                        echo "<th>Latitude</th>";
-                        echo "<th>Longitude</th>";
-                        echo "<th>Elevation</th>";
-                        echo "</tr>";
-                        while ($row = mysqli_fetch_array($result)) {
-                            echo "<tr>";
-                            echo "<td>" . $row['stn'] . "</td>";
-                            echo "<td>" . $row['name'] . "</td>";
-                            echo "<td>" . $row['country'] . "</td>";
-                            echo "<td>" . $row['latitude'] . "</td>";
-                            echo "<td>" . $row['longitude'] . "</td>";
-                            echo "<td>" . $row['elevation'] . "</td>";
-                            echo "</tr>";
-                        }
-                        echo "</table>";
-                    } else {
-                        print("This is no valid stationnumber");
-                    }
-                } else {
-                    print("iets met de verbinding");
-                }
-            }
-            print("<div class='stationcountry'>");
-            $query = "SELECT DISTINCT country FROM stations ORDER BY country";
-            $result = mysqli_query($dbConnection, $query);
-            print("<form method='post' action='station.php'><select id='country' class='selectCountry' name='country'");
-            while($row = mysqli_fetch_array($result)) {
-                print("<option value='{$row['country']}'>" . $row['country'] . "</option>");
-            }
-            print("</select ><input type='submit' class='submitButton' value='Select Country'></form>");
-            dbDisconnect($dbConnection);
-            print("</div>");
         ?>
+        </div>
     </body>
 </html>
 

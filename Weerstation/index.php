@@ -44,6 +44,7 @@
                     $sql = "SELECT * FROM stations
                             WHERE country = '$stationland'";
                     if ($result = mysqli_query($dbConnection, $sql)) {
+                        echo "<form method='post' action='station.php'>";
                         if ($result->num_rows > 0) {
                             echo "<table class='stationTable'>";
                             echo "<tr>";
@@ -56,7 +57,7 @@
                             echo "</tr>";
                             while ($row = mysqli_fetch_array($result)) {
                                 echo "<tr>";
-                                echo "<td>" . $row['stn'] . "</td>";
+                                echo "<td><input type='submit' class='stnButton' name='stn' value='{$row['stn']}'></td>";
                                 echo "<td>" . $row['name'] . "</td>";
                                 echo "<td>" . $row['country'] . "</td>";
                                 echo "<td>" . $row['latitude'] . "</td>";
@@ -68,6 +69,7 @@
                         } else {
                             print("Er ging iets fout");
                         }
+                        echo "</form>";
                     } else {
                         print("iets met de verbinding");
                     }

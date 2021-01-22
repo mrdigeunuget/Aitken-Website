@@ -103,6 +103,15 @@ body {
 	border-radius: 5px;
 }
 
+.stnButton {
+	font-family: Arial, Helvetica, sans-serif;
+	background: none;
+	text-decoration: underline;
+	border: none;
+	cursor: pointer;
+	font-size: inherit;
+}
+
 .stationTable {
 	font-family: Arial, Helvetica, sans-serif;
 	border-collapse: collapse;
