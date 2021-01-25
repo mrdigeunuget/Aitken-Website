@@ -13,17 +13,17 @@
                 <a class="active" href="index.php">Home</a>
                 <a href="station.php">Station</a>
 
-                <?php
-                require('database.lib.php');
-                $dbConnection = dbConnect();
-                $sessienummerextra = $_SESSION['persoon'];
-                if(empty($sessienummerextra)){
-                    header("Location: login.php", true, 301);
-                } else {
-                    print('<a class="logButton" href="sessionend.php" >Log out</a>');
-                    $sessienummer = $_SESSION['persoon'];
-                }
-                ?>
+                    <?php
+                    require('database.lib.php');
+                    $dbConnection = dbConnect();
+                    $sessienummerextra = $_SESSION['persoon'];
+                    if(empty($sessienummerextra)){
+                        header("Location: login.php", true, 301);
+                    } else {
+                        print('<a class="logButton" href="sessionend.php" >Log out</a>');
+                        $sessienummer = $_SESSION['persoon'];
+                    }
+                    ?>
             </div>
         </ul>
         <div class='backbox'>
@@ -67,7 +67,7 @@
                             }
                             print ("</form></table>");
                         } else {
-                            print ("Er ging iets fout");
+                            print ("Er is geen data");
                         }
                     } else {
                         print ("iets met de verbinding");

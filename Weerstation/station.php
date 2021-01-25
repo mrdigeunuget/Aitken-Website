@@ -7,7 +7,7 @@
     <body>
         <ul class="navBar">
             <div class="photo">
-                <a href='index.php'><img src="pictures/diamond.png" alt="diamond"></a>
+                <a href='index.php'><img src="pictures/logoWhite.png" alt="diamond"></a>
             </div>
             <div class='btn-group'>
                 <a href="index.php">Home</a>
@@ -25,13 +25,18 @@
                 ?>
             </div>
         </ul>
+
+
         <div class="backbox">
         <?php
+        $dataPoints = array();
+        $iData = 0;
             if(isset($_POST['stn'])) {
                 $stn = $_POST['stn'];
                 $sql = "SELECT * FROM data
                         WHERE stn = '$stn'
-                        GROUP BY time";
+                        GROUP BY time
+                        LIMIT 60";
                 if ($result = mysqli_query($dbConnection, $sql)) {
                     if ($result->num_rows > 0) {
                         print ("<table class='stationTable'>
@@ -66,10 +71,46 @@
                                     <td>{$row['wnddir']}</td>
                                     <td>{$row['slp']}</td>                                    
                                   </tr>");
+                            array_push($dataPoints, array("x" => $iData, "y" => $row['temp']));
+                            $iData++
+                            ?>
+                            <script>
+                                window.onload = function () {
+
+                                    var chart = new CanvasJS.Chart("chartContainer", {
+                                        animationEnabled: true,
+                                        title:{
+                                            text: "Temperature"
+                                        },
+                                        axisY: {
+                                            title: "Temperature in celcius",
+                                            suffix: "°C",
+
+                                        },
+
+                                        axisX: {
+                                            interval: 1,
+                                            title: "Second",
+                                        },
+
+                                        data: [{
+                                            type: "spline",
+                                            markerSize: 1,
+
+                                            xValueType: "Time",
+                                            dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
+                                        }]
+                                    });
+
+                                    chart.render();
+
+                                }
+                            </script>
+                        <?php
                         }
                         print ("</table>");
                     } else {
-                        print("Er ging iets fout");
+                        print("Er is geen data");
                     }
                 } else {
                     print("iets met de verbinding");
@@ -81,6 +122,9 @@
             }
         ?>
         </div>
+
+        <div id="chartContainer" style="height: 450px; width: 100%;"></div>
+        <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     </body>
 </html>
 
