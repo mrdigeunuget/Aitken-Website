@@ -65,6 +65,14 @@ body {
 	background-color: #1a4ead;
 }
 
+.extraBackBox {
+	text-align: center;
+	padding: 20px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	background-color: #1a4ead;
+}
+
 .selectCountry {
 	font-size: 15px;
 	font-family: sans-serif;
@@ -104,12 +112,14 @@ body {
 }
 
 .stnButton {
-	font-family: Arial, Helvetica, sans-serif;
-	background: none;
-	text-decoration: underline;
+	padding: 10px;
+	margin-left: 10px;
+	font-size: 15px;
+	color: white;
+	background: #3775e6;
 	border: none;
-	cursor: pointer;
-	font-size: inherit;
+	border-radius: 5px;
+
 }
 
 .stationTable {

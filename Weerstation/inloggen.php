@@ -18,12 +18,12 @@
                 $row = $result->fetch_assoc();
                 $_SESSION['persoon'] = 1;
                 print ("<script>
-                      alert('succesvol ingelogd, klik op OK om te bestellen');
+                      alert('Login was succesfull');
                       window.location.href='index.php';
                      </script>");
             }else {
                 print ("<script>
-                      alert('verkeerde wachtwoord of gebruikersnaam, probeer het opnieuw');
+                      alert('Wrong password or username, try again');
                       window.location.href='login.php';
                      </script>");
             }

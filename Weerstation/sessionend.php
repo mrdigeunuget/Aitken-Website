@@ -3,6 +3,6 @@
     $_SESSION = array();
     session_destroy();
 	print ("<script>
-          alert('succesvol uitgelogd, klik op OK om naar de home pagina te gaan');
+          alert('Logout was succesful.');
           window.location.href='login.php';
          </script>");
