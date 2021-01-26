@@ -79,7 +79,7 @@ body {
 	font-weight: bold;
 	color: #1a4ead;
 	padding: 10px;
-	width: 30%;
+	width: 70%;
 	border: none;
 	border-radius: 5px;
 	appearance: none;
@@ -109,6 +109,7 @@ body {
 	background: #4d8cff;
 	border: none;
 	border-radius: 5px;
+	cursor: pointer;
 }
 
 .stnButton {
@@ -120,8 +121,6 @@ body {
 }
 
 .stnButtonSearch {
-
-
 	padding: 10px;
 	margin-left: 10px;
 	font-size: 15px;
@@ -171,6 +170,38 @@ body {
 	background: #3775e6 !important;
 	border-radius: 5px;
 	text-decoration: none;
+}
+
+.stationTextInput {
+	font-size: 15px;
+	font-family: sans-serif;
+	font-weight: bold;
+	color: #1a4ead;
+	padding: 10px;
+	width: 80%;
+	border: none;
+	border-radius: 5px;
+	appearance: none;
+	background-color: whitesmoke;
+}
+
+.formlabel{
+	font-size: 15px;
+	color: white;
+	font-weight: bold;
+}
+
+fieldset{
+	border-color: white;
+	margin: auto;
+	position: center;
+	width: 50%;
+	border-radius: 5px;
+	padding-right: 0;
+	padding-left: 0;
+}
+legend{
+	color:white;
 }
 
 

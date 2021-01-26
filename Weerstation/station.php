@@ -27,9 +27,13 @@
         </ul>
         <div class='extraBackBox'>
             <div class='stations'>
+
                 <form method='post' action=''>
-                    <p>Stationnumber: <input type="text" name="stn" /></p>
-                <input type='submit' class='stnButtonSearch' value='Search'></form>
+                    <fieldset>
+                    <legend>Stationnumber</legend>
+                        <input type="text" class="stationTextInput" name="stn" placeholder="e.g. 123456" />
+                    <input type='submit' class='submitButton' value='Search'>
+                    </fieldset></form>
 
             </div>
         </div>
