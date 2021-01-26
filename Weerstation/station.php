@@ -29,7 +29,7 @@
             <div class='stations'>
                 <form method='post' action=''>
                     <p>Stationnumber: <input type="text" name="stn" /></p>
-                <input type='submit' class='stnButton' value='Search'></form>
+                <input type='submit' class='stnButtonSearch' value='Search'></form>
 
             </div>
         </div>
@@ -50,9 +50,9 @@
             if(isset($_POST['stn'])) {
                 if($graph == 2){
                 $stn = $_POST['stn'];
-                print("<div class='backbox'>
-                <a href=station.php?stationNumber=$stn&graph=1>Graph</a>
-                <a href=station.php?stationNumber=$stn&graph=2>Table</a>");
+                print("<div class='backbox'><div class='graphTable'>
+                <a href=station.php?stationNumber=$stn&graph=1 class ='graphTable'>Graph</a>
+                <a href=station.php?stationNumber=$stn&graph=2 class = 'graphTable'>Table</a></div>");
 
 
                 print("<div class= 'currentcountry'> 
@@ -109,8 +109,8 @@
             }elseif($graph == 1){
                     $stn = $_POST['stn'];
                 print("<div class='backbox'>
-                <a href=station.php?stationNumber=$stn&graph=1>Graph</a>
-                <a href=station.php?stationNumber=$stn&graph=2>Table</a>");
+                <a href=station.php?stationNumber=$stn&graph=1 class = 'graphTable'>Graph</a>
+                <a href=station.php?stationNumber=$stn&graph=2 class = 'graphTable'>Table</a>");
 
 
                 print("<div class= 'currentcountry'> 
@@ -126,7 +126,7 @@
                             if ($result->num_rows > 0) {
                                 while ($row = mysqli_fetch_array($result)) {
                                     array_push($dataPoints, array("x" => $iData, "y" => $row['temp']));
-                                    array_push($dataPointsRain, array("x" => $iData, "y" => $row['wdsp']));
+                                    array_push($dataPointsRain, array("x" => $iData, "y" => $row['prcp']));
                                     $iData++;
                                 }
                                 ?>
@@ -207,8 +207,8 @@
             if($graph == 2 && empty($_POST['stn'])){
                 $stn = $_GET['stationNumber'];
                 print("<div class='backbox'>
-                <a href=station.php?stationNumber=$stn&graph=1>Graph</a>
-                <a href=station.php?stationNumber=$stn&graph=2>Table</a>");
+                <a href=station.php?stationNumber=$stn&graph=1 class = 'graphTable'>Graph</a>
+                <a href=station.php?stationNumber=$stn&graph=2 class = 'graphTable'>Table</a>");
 
 
                 print("<div class= 'currentcountry'> 
@@ -266,8 +266,8 @@
             }elseif($graph == 1 && empty($_POST['stn'])){
                 $stn = $_GET['stationNumber'];
                 print("<div class='backbox'>
-                <a href=station.php?stationNumber=$stn&graph=1>Graph</a>
-                <a href=station.php?stationNumber=$stn&graph=2>Table</a>");
+                <a href=station.php?stationNumber=$stn&graph=1 class = 'graphTable'>Graph</a>
+                <a href=station.php?stationNumber=$stn&graph=2 class = 'graphTable'>Table</a>");
 
 
                 print("<div class= 'currentcountry'> 
@@ -282,7 +282,7 @@
                     if ($result->num_rows > 0) {
                         while ($row = mysqli_fetch_array($result)) {
                             array_push($dataPoints, array("x" => $iData, "y" => $row['temp']));
-                            array_push($dataPointsRain, array("x" => $iData, "y" => $row['wdsp']));
+                            array_push($dataPointsRain, array("x" => $iData, "y" => $row['prcp']));
                             $iData++;
                         }
                         ?>

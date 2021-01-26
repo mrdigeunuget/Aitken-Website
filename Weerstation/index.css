@@ -119,6 +119,17 @@ body {
 	cursor: pointer;
 }
 
+.stnButtonSearch {
+
+
+	padding: 10px;
+	margin-left: 10px;
+	font-size: 15px;
+	color: white;
+	background: #3775e6;
+	border-radius: 5px;
+}
+
 .stationTable {
 	font-family: Arial, Helvetica, sans-serif;
 	border-collapse: collapse;
@@ -151,6 +162,16 @@ body {
 	background-color: grey;
 }
 
+.graphTable {
+	padding: 5px;
+	display: inline-block;
+	margin-bottom: 10px;
+	font-size: 15px;
+	color: white;
+	background: #3775e6 !important;
+	border-radius: 5px;
+	text-decoration: none;
+}
 
 
 
