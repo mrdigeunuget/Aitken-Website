@@ -92,20 +92,20 @@
                                            </tr>
                                            <tr>");
                                 }
-                                isset($array[$i]["STN"]) ? print("<td>{$array[$i]["STN"]}</td>") : print("<td></td>");
+                                isset($array[$i]["STN"]) ? print("<td><div class='tooltip'>{$array[$i]["STN"]}<div class='tooltiptext'>Station Number</div></div></td>") : print("<td></td>");
                                 isset($array[$i]["DATE"]) ? print("<td>{$array[$i]["DATE"]}</td>") : print("<td></td>");
                                 isset($array[$i]["TIME"]) ? print("<td>{$array[$i]["TIME"]}</td>") : print("<td></td>");
-                                isset($array[$i]["TEMP"]) ? print("<td>{$array[$i]["TEMP"]}</td>") : print("<td></td>");
-                                isset($array[$i]["DEWP"]) ? print("<td>{$array[$i]["DEWP"]}</td>") : print("<td></td>");
-                                isset($array[$i]["STP"]) ? print("<td>{$array[$i]["STP"]}</td>") : print("<td></td>");
-                                isset($array[$i]["SLP"]) ? print("<td>{$array[$i]["SLP"]}</td>") : print("<td></td>");
-                                isset($array[$i]["VISIB"]) ? print("<td>{$array[$i]["VISIB"]}</td>") : print("<td></td>");
-                                isset($array[$i]["WDSP"]) ? print("<td>{$array[$i]["WDSP"]}</td>") : print("<td></td>");
-                                isset($array[$i]["PRCP"]) ? print("<td>{$array[$i]["PRCP"]}</td>") : print("<td></td>");
-                                isset($array[$i]["SNDP"]) ? print("<td>{$array[$i]["SNDP"]}</td>") : print("<td></td>");
-                                isset($array[$i]["FRSHTT"]) ? print("<td>{$array[$i]["FRSHTT"]}</td>") : print("<td></td>");
-                                isset($array[$i]["CLDC"]) ? print("<td>{$array[$i]["CLDC"]}</td>") : print("<td></td>");
-                                isset($array[$i]["WNDDIR"]) ? print("<td>{$array[$i]["WNDDIR"]}</td>") : print("<td></td>");
+                                isset($array[$i]["TEMP"]) ? print("<td><div class='tooltip'>{$array[$i]["TEMP"]}<div class='tooltiptext'>Temperature in Celsius</div></div></td>") : print("<td></td>");
+                                isset($array[$i]["DEWP"]) ? print("<td><div class='tooltip'>{$array[$i]["DEWP"]}<div class='tooltiptext'>Dew percentage</div></div></td>") : print("<td></td>");
+                                isset($array[$i]["STP"]) ? print("<td><div class='tooltip'>{$array[$i]["STP"]}<div class='tooltiptext'>Air pressure in mbar at station level</div></div></td>") : print("<td></td>");
+                                isset($array[$i]["SLP"]) ? print("<td><div class='tooltip'>{$array[$i]["SLP"]}<div class='tooltiptext'>Air pressure in mbar at sea level</div></div></td>") : print("<td></td>");
+                                isset($array[$i]["VISIB"]) ? print("<td><div class='tooltip'>{$array[$i]["VISIB"]}<div class='tooltiptext'>Visibility in km</div></div></td>") : print("<td></td>");
+                                isset($array[$i]["WDSP"]) ? print("<td><div class='tooltip'>{$array[$i]["WDSP"]}<div class='tooltiptext'>Windspeed in km/h</div></div></td>") : print("<td></td>");
+                                isset($array[$i]["PRCP"]) ? print("<td><div class='tooltip'>{$array[$i]["PRCP"]}<div class='tooltiptext'>Precipitation in mm</div></div></td>") : print("<td></td>");
+                                isset($array[$i]["SNDP"]) ? print("<td><div class='tooltip'>{$array[$i]["SNDP"]}<div class='tooltiptext'>Snow in cm</div></div></td>") : print("<td></td>");
+                                isset($array[$i]["FRSHTT"]) ? print("<td><div class='tooltip'>{$array[$i]["FRSHTT"]}<div class='tooltiptext'>Frost, Rain, Snow, Hail, Thunder, Tornado</div></div></td>") : print("<td></td>");
+                                isset($array[$i]["CLDC"]) ? print("<td><div class='tooltip'>{$array[$i]["CLDC"]}<div class='tooltiptext'>Clouddensity in percentage</div></div></td>") : print("<td></td>");
+                                isset($array[$i]["WNDDIR"]) ? print("<td><div class='tooltip'>{$array[$i]["WNDDIR"]}<div class='tooltiptext'>Wind direction in degrees</div></div></td>") : print("<td></td>");
                                 print("</tr>");
                             }
                         }else {
