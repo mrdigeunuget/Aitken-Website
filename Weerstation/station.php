@@ -6,7 +6,7 @@
         <link rel="stylesheet" type="text/css" href="station.css">
         <script type="text/javascript" src="scripts.js"></script>
     </head>
-    <body>
+    <body >
         <ul class="navBar">
             <div class="photo">
                 <a href='index.php'><img src="pictures/logoWhite.png" alt="diamond"></a>
@@ -36,27 +36,30 @@
                 </form>
             </div>
         </div>
-        <div class='backbox'>
+        <?php
+            $stn = "";
+            if(isset($_POST['stn'])) {
+                $stn = $_POST['stn'];
+            }
+        ?>
+        <div class='backbox' >
             <div class ='tab'>
-                <button class = "tablinks" onclick="openData(event,'graph')" id="defaultOpen">Graph</button>
-                <button class = "tablinks" onclick="openData(event,'table')">Table</button>
+                <button class="tablinks" onclick="openData(event,'graph')" id="defaultOpen">Graph</button>
+                <button class="tablinks" onclick="openData(event,'table')">Table</button>
+                <text class="tablinks" ><?php $stn != ""?print("Current station: $stn"):print("No station selected");?></text>
             </div>
             <?php
-                $stn = "";
-                if(isset($_POST['stn'])) {
-                    $stn = $_POST['stn'];
-                }
+
                 if(!file_exists("data/17_2021-01-27_$stn")){
-                    print("file is non-existant");
+                    if($stn != "") {
+                        print("file is non-existant");
+                    }
                 }else{
                     $strJsonFileContents = file_get_contents("data/17_2021-01-27_$stn");
                     $array = json_decode($strJsonFileContents, true);
                     print("<div id='graph' class='tabcontent'>");
                         $dataPoints = array();
                         $dataPointsRain = array();
-                        print("<div class= 'currentcountry'> 
-                                    Current station: $stn
-                                    </div>");
                         for($i = 1; $i < 61; $i++){
                             array_push($dataPoints, array("x" => $i, "y" => $array[$i]["TEMP"]));
                             array_push($dataPointsRain, array("x" => $i, "y" => $array[$i]["PRCP"]));
@@ -67,9 +70,6 @@
                             <script src='https://canvasjs.com/assets/script/canvasjs.min.js'></script>");
                     print("</div>
                            <div id='table' class='tabcontent'>");
-                        print("<div class= 'currentcountry'> 
-                                Current station: $stn
-                                </div>");
                         if(!empty($strJsonFileContents)) {
                             print("<table class = stationTable>");
                             for ($i = 0; $i < 60; $i++) {

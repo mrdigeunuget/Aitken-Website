@@ -8,17 +8,23 @@ body {
     overflow: hidden;
     border: 1px solid #ccc;
     background-color: #f1f1f1;
+    border-radius: 5px 5px 0 0;
 }
 
 /* Style the buttons that are used to open the tab content */
 .tab button {
     background-color: inherit;
+    font-size: 15px;
+    font-family: sans-serif;
+    font-weight: bold;
+    color: #1a4ead;
     float: left;
     border: none;
     outline: none;
     cursor: pointer;
     padding: 14px 16px;
     transition: 0.3s;
+
 }
 
 /* Change background color of buttons on hover */
@@ -31,12 +37,28 @@ body {
     background-color: #ccc;
 }
 
+.tab text{
+    background-color: inherit;
+    font-size: 15px;
+    font-family: sans-serif;
+    font-weight: bold;
+    color: #1a4ead;
+    float: right;
+    border: none;
+    outline: none;
+    padding: 14px 16px;
+    transition: 0.3s;
+
+}
+
 /* Style the tab content */
 .tabcontent {
     display: none;
-    padding: 6px 12px;
+    padding: 12px;
     border: 1px solid #ccc;
     border-top: none;
+    border-radius: 0 0 5px 5px;
+
 }
 
 

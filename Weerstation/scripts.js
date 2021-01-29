@@ -19,6 +19,6 @@ function openData(evt, cityName) {
     evt.currentTarget.className += " active";
 
 }
-document.getElementById("defaultOpen").click();
-// Get the element with id="defaultOpen" and click on it
 
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
