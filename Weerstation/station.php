@@ -3,6 +3,7 @@
     <head>
         <title>Stationsinformatie</title>
         <link rel="stylesheet" type="text/css" href="index.css">
+        <link rel="stylesheet" type="text/css" href="station.css">
     </head>
     <body>
         <ul class="navBar">
@@ -26,97 +27,59 @@
                 </form>
             </div>
         </div>
+<script>
+        function openData(evt, cityName) {
+        // Declare all variables
+        var i, tabcontent, tablinks;
 
-        <?php
-        $stn = "";
-        if(isset($_POST['stn'])) {
-            $stn = $_POST['stn'];
+        // Get all elements with class="tabcontent" and hide them
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
         }
-        if(!file_exists("data/2021-01-26_$stn")){
-            print("file is non-existant");
-        } else {
-            $strJsonFileContents = file_get_contents("data/2021-01-26_$stn");
-            $array = json_decode($strJsonFileContents, true);
-            $graph = 0;
-            $stnExtra = 0;
-            $dataPoints = array();
-            $dataPointsRain = array();
-            if(empty($_GET['graph'])){
-                $graph = 1;
-            }
-            if(isset($_GET['graph'])){
-                $graph = $_GET['graph'];
-            }
+
+        // Get all elements with class="tablinks" and remove the class "active"
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+
+        // Show the current tab, and add an "active" class to the button that opened the tab
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+
+        }
+        document.getElementById("defaultOpen").click();
+        // Get the element with id="defaultOpen" and click on it
+
+</script>
+        <div class='backbox'>
+            <div class ='tab'>
+                <button class = "tablinks" onclick="openData(event,'graph')" id="defaultOpen">Graph</button>
+                <button class = "tablinks" onclick="openData(event,'table')">Table</button>
+            </div>
+
+            <?php
+                $stn = "";
                 if(isset($_POST['stn'])) {
-                    if($graph == 2){
                     $stn = $_POST['stn'];
-                    print("<div class='backbox'><div class='graphTable'>
-                    <a href=station.php?stationNumber=$stn&graph=1 class ='graphTable'>Graph</a>
-                    <a href=station.php?stationNumber=$stn&graph=2 class = 'graphTable'>Table</a></div>");
-
-
+                }
+                if(!file_exists("data/17_2021-01-27_$stn")){
+                    print("file is non-existant");
+                }else{
+                    $strJsonFileContents = file_get_contents("data/17_2021-01-27_$stn");
+                    $array = json_decode($strJsonFileContents, true);
+                    print("<div id='graph' class='tabcontent'>");
+                    $dataPoints = array();
+                    $dataPointsRain = array();
                     print("<div class= 'currentcountry'> 
-                        Current station: $stn
-                        </div>");
-
-
-                    $i = 0;
-                    if(!empty($strJsonFileContents)) {
-                        print("<table class = stationTable>");
-                        for ($i = 0; $i < sizeof($array); $i++) {
-                            print("<tr>");
-                            if ($i == 0) {
-                                print("<th>STN</th>
-                                                    <th>DATE</th>
-                                                    <th>TIME</th>
-                                                    <th>TEMP</th>
-                                                    <th>DEWP</th>
-                                                    <th>STP</th>
-                                                    <th>SLP</th>
-                                                    <th>VISIB</th>
-                                                    <th>WDSP</th>
-                                                    <th>PRCP</th>
-                                                    <th>SNDP</th>
-                                                    <th>FRSHTT</th>
-                                                    <th>CLDC</th>
-                                                    <th>WNDDIR</th></tr><tr>");
-                            }
-                            isset($array[$i]["STN"]) ? print("<td>{$array[$i]["STN"]}</td>") : print("<td></td>");
-                            isset($array[$i]["DATE"]) ? print("<td>{$array[$i]["DATE"]}</td>") : print("<td></td>");
-                            isset($array[$i]["TIME"]) ? print("<td>{$array[$i]["TIME"]}</td>") : print("<td></td>");
-                            isset($array[$i]["TEMP"]) ? print("<td>{$array[$i]["TEMP"]}</td>") : print("<td></td>");
-                            isset($array[$i]["DEWP"]) ? print("<td>{$array[$i]["DEWP"]}</td>") : print("<td></td>");
-                            isset($array[$i]["STP"]) ? print("<td>{$array[$i]["STP"]}</td>") : print("<td></td>");
-                            isset($array[$i]["SLP"]) ? print("<td>{$array[$i]["SLP"]}</td>") : print("<td></td>");
-                            isset($array[$i]["VISIB"]) ? print("<td>{$array[$i]["VISIB"]}</td>") : print("<td></td>");
-                            isset($array[$i]["WDSP"]) ? print("<td>{$array[$i]["WDSP"]}</td>") : print("<td></td>");
-                            isset($array[$i]["PRCP"]) ? print("<td>{$array[$i]["PRCP"]}</td>") : print("<td></td>");
-                            isset($array[$i]["SNDP"]) ? print("<td>{$array[$i]["SNDP"]}</td>") : print("<td></td>");
-                            isset($array[$i]["FRSHTT"]) ? print("<td>{$array[$i]["FRSHTT"]}</td>") : print("<td></td>");
-                            isset($array[$i]["CLDC"]) ? print("<td>{$array[$i]["CLDC"]}</td>") : print("<td></td>");
-                            isset($array[$i]["WNDDIR"]) ? print("<td>{$array[$i]["WNDDIR"]}</td>") : print("<td></td>");
-                            print("</tr>");
-                        }
-                    }else {
-                        print("There is no data available for this station");
+                                Current station: $stn
+                                </div>");
+                    for($i = 1; $i < 61; $i++){
+                        array_push($dataPoints, array("x" => $i, "y" => $array[$i]["TEMP"]));
+                        array_push($dataPointsRain, array("x" => $i, "y" => $array[$i]["PRCP"]));
                     }
-                print("</table>");
-                }elseif($graph == 1){
-                        $stn = $_POST['stn'];
-                    print("<div class='backbox'>
-                    <a href=station.php?stationNumber=$stn&graph=1 class = 'graphTable'>Graph</a>
-                    <a href=station.php?stationNumber=$stn&graph=2 class = 'graphTable'>Table</a>");
-
-
-                    print("<div class= 'currentcountry'> 
-                        Current station: $stn
-                        </div>");
-
-                            for($i = 0; $i < sizeof($array); $i++){
-                                        array_push($dataPoints, array("x" => $i, "y" => $array[$i]["TEMP"]));
-                                        array_push($dataPointsRain, array("x" => $i, "y" => $array[$i]["PRCP"]));
-                                    }
-                                    ?>
+            ?>
             <script>
                 window.onload = function () {
 
@@ -178,149 +141,62 @@
 
                 }
             </script>
+            <div id="chartContainer" style="height: 450px; width: 100%; position: relative;"></div>
+            <div id="chartContainerRain" style="height: 450px; width: 100%; position: relative; padding-top: 10px;"></div>
+            <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
             <?php
+            print("</div>");
+            ?>
+            <div id="table" class="tabcontent">
+                <?php
+                    print("<div class= 'currentcountry'> 
+                            Current station: $stn
+                            </div>");
+                        if(!empty($strJsonFileContents)) {
+                            print("<table class = stationTable>");
+                            for ($i = 0; $i < 60; $i++) {
+                                print("<tr>");
+                                if ($i == 0) {
+                                    print("<th>STN</th>
+                                                            <th>DATE</th>
+                                                            <th>TIME</th>
+                                                            <th>TEMP</th>
+                                                            <th>DEWP</th>
+                                                            <th>STP</th>
+                                                            <th>SLP</th>
+                                                            <th>VISIB</th>
+                                                            <th>WDSP</th>
+                                                            <th>PRCP</th>
+                                                            <th>SNDP</th>
+                                                            <th>FRSHTT</th>
+                                                            <th>CLDC</th>
+                                                            <th>WNDDIR</th></tr><tr>");
                                 }
+                                isset($array[$i]["STN"]) ? print("<td>{$array[$i]["STN"]}</td>") : print("<td></td>");
+                                isset($array[$i]["DATE"]) ? print("<td>{$array[$i]["DATE"]}</td>") : print("<td></td>");
+                                isset($array[$i]["TIME"]) ? print("<td>{$array[$i]["TIME"]}</td>") : print("<td></td>");
+                                isset($array[$i]["TEMP"]) ? print("<td>{$array[$i]["TEMP"]}</td>") : print("<td></td>");
+                                isset($array[$i]["DEWP"]) ? print("<td>{$array[$i]["DEWP"]}</td>") : print("<td></td>");
+                                isset($array[$i]["STP"]) ? print("<td>{$array[$i]["STP"]}</td>") : print("<td></td>");
+                                isset($array[$i]["SLP"]) ? print("<td>{$array[$i]["SLP"]}</td>") : print("<td></td>");
+                                isset($array[$i]["VISIB"]) ? print("<td>{$array[$i]["VISIB"]}</td>") : print("<td></td>");
+                                isset($array[$i]["WDSP"]) ? print("<td>{$array[$i]["WDSP"]}</td>") : print("<td></td>");
+                                isset($array[$i]["PRCP"]) ? print("<td>{$array[$i]["PRCP"]}</td>") : print("<td></td>");
+                                isset($array[$i]["SNDP"]) ? print("<td>{$array[$i]["SNDP"]}</td>") : print("<td></td>");
+                                isset($array[$i]["FRSHTT"]) ? print("<td>{$array[$i]["FRSHTT"]}</td>") : print("<td></td>");
+                                isset($array[$i]["CLDC"]) ? print("<td>{$array[$i]["CLDC"]}</td>") : print("<td></td>");
+                                isset($array[$i]["WNDDIR"]) ? print("<td>{$array[$i]["WNDDIR"]}</td>") : print("<td></td>");
+                                print("</tr>");
                             }
-
-            if(isset($_GET['stationNumber'])) {
-            if($graph == 2 && empty($_POST['stn'])){
-                $stn = $_GET['stationNumber'];
-                print("<div class='backbox'>
-                <a href=station.php?stationNumber=$stn&graph=1 class = 'graphTable'>Graph</a>
-                <a href=station.php?stationNumber=$stn&graph=2 class = 'graphTable'>Table</a>");
-
-
-                print("<div class= 'currentcountry'> 
-                    Current station: $stn
-                    </div>");
-                $strJsonFileContents = file_get_contents("data/2021-01-26_11510");
-                $array = json_decode($strJsonFileContents, true);
-                $i = 0;
-                if(!empty($strJsonFileContents)) {
-                    print("<table class = stationTable>");
-                    for ($i = 0; $i < sizeof($array); $i++) {
-                        print("<tr>");
-                        if ($i == 0) {
-                            print("<th>STN</th>
-                                                <th>DATE</th>
-                                                <th>TIME</th>
-                                                <th>TEMP</th>
-                                                <th>DEWP</th>
-                                                <th>STP</th>
-                                                <th>SLP</th>
-                                                <th>VISIB</th>
-                                                <th>WDSP</th>
-                                                <th>PRCP</th>
-                                                <th>SNDP</th>
-                                                <th>FRSHTT</th>
-                                                <th>CLDC</th>
-                                                <th>WNDDIR</th></tr><tr>");
+                        }else {
+                            print("There is no data available for this station");
                         }
-                        isset($array[$i]["STN"]) ? print("<td>{$array[$i]["STN"]}</td>") : print("<td></td>");
-                        isset($array[$i]["DATE"]) ? print("<td>{$array[$i]["DATE"]}</td>") : print("<td></td>");
-                        isset($array[$i]["TIME"]) ? print("<td>{$array[$i]["TIME"]}</td>") : print("<td></td>");
-                        isset($array[$i]["TEMP"]) ? print("<td>{$array[$i]["TEMP"]}</td>") : print("<td></td>");
-                        isset($array[$i]["DEWP"]) ? print("<td>{$array[$i]["DEWP"]}</td>") : print("<td></td>");
-                        isset($array[$i]["STP"]) ? print("<td>{$array[$i]["STP"]}</td>") : print("<td></td>");
-                        isset($array[$i]["SLP"]) ? print("<td>{$array[$i]["SLP"]}</td>") : print("<td></td>");
-                        isset($array[$i]["VISIB"]) ? print("<td>{$array[$i]["VISIB"]}</td>") : print("<td></td>");
-                        isset($array[$i]["WDSP"]) ? print("<td>{$array[$i]["WDSP"]}</td>") : print("<td></td>");
-                        isset($array[$i]["PRCP"]) ? print("<td>{$array[$i]["PRCP"]}</td>") : print("<td></td>");
-                        isset($array[$i]["SNDP"]) ? print("<td>{$array[$i]["SNDP"]}</td>") : print("<td></td>");
-                        isset($array[$i]["FRSHTT"]) ? print("<td>{$array[$i]["FRSHTT"]}</td>") : print("<td></td>");
-                        isset($array[$i]["CLDC"]) ? print("<td>{$array[$i]["CLDC"]}</td>") : print("<td></td>");
-                        isset($array[$i]["WNDDIR"]) ? print("<td>{$array[$i]["WNDDIR"]}</td>") : print("<td></td>");
-                        print("</tr>");
-                    }
-                }else {
-                    print("There is no data available for this station");
+                        print("</table>");
                 }
-                print("</table>");
+                ?>
+            </div>
+        </div>
 
-            }elseif($graph == 1 && empty($_POST['stn'])){
-                $stn = $_GET['stationNumber'];
-                print("<div class='backbox'>
-                <a href=station.php?stationNumber=$stn&graph=1 class = 'graphTable'>Graph</a>
-                <a href=station.php?stationNumber=$stn&graph=2 class = 'graphTable'>Table</a>");
-
-                print("<div class= 'currentcountry'> 
-                    Current station: $stn
-                    </div>");
-
-        for($i = 0; $i < sizeof($array); $i++){
-            array_push($dataPoints, array("x" => $i, "y" => $array[$i]["TEMP"]));
-            array_push($dataPointsRain, array("x" => $i, "y" => $array[$i]["PRCP"]));
-        }
-        ?>
-
-                        <script>
-                            window.onload = function () {
-
-                                var chart = new CanvasJS.Chart("chartContainer", {
-                                    animationEnabled: true,
-                                    title:{
-                                        text: "Temperature"
-                                    },
-                                    axisY: {
-                                        title: "Temperature in celcius",
-                                        suffix: "°C",
-
-                                    },
-
-                                    axisX: {
-                                        interval: 1,
-                                        title: "Second",
-                                    },
-
-                                    data: [{
-                                        type: "spline",
-                                        markerSize: 1,
-
-                                        xValueType: "Time",
-                                        dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
-                                    }]
-                                });
-
-                                chart.render();
-
-                                var chartRain = new CanvasJS.Chart("chartContainerRain", {
-                                    animationEnabled: true,
-                                    title:{
-                                        text: "Rainfall"
-                                    },
-                                    axisY: {
-                                        title: "Rainfall in mm",
-                                        suffix: "mm",
-
-                                    },
-
-                                    axisX: {
-                                        interval: 1,
-                                        title: "Second",
-                                    },
-
-                                    data: [{
-                                        type: "spline",
-                                        markerSize: 1,
-
-                                        xValueType: "Time",
-                                        dataPoints: <?php echo json_encode($dataPointsRain, JSON_NUMERIC_CHECK); ?>
-                                    }]
-                                });
-
-                                chartRain.render();
-
-                            }
-                        </script>
-                        <?php
-                    }
-                }
-        }
-        ?>
-
-        <div id="chartContainer" style="height: 450px; width: 100%; position: relative;"></div>
-        <div id="chartContainerRain" style="height: 450px; width: 100%; position: relative; padding-top: 10px;"></div>
-        <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     </body>
 </html>
 
