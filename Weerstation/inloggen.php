@@ -8,6 +8,7 @@
 $gebruikersnaam = $_POST['user'];
 $wachtwoord = $_POST['password'];
 if($gebruikersnaam=="admin" && $wachtwoord == "admin") {
+    $_SESSION['persoon'] = 1;
     print ("<script>
                       alert('Login was succesfull');
                       window.location.href='index.php';

@@ -12,6 +12,16 @@
             <div class='btn-group'>
                 <a class="active" href="index.php">Home</a>
                 <a href="station.php">Station</a>
+                <?php
+                $sessienummerextra = $_SESSION['persoon'];
+                if(empty($sessienummerextra)){
+                    header("Location: login.php", true, 301);
+                } else {
+                    print('<a class="logButton" href="sessionend.php" >Log out</a>');
+                    $sessienummer = $_SESSION['persoon'];
+                }
+                ?>
+
             </div>
         </ul>
         <div class='backbox'>
