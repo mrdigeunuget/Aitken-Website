@@ -196,9 +196,8 @@ body {
 fieldset{
 	border-color: white;
 	margin: auto;
-	position: center;
 	width: 50%;
-	border-radius: 5px;
+	position: center;
 	padding-right: 0;
 	padding-left: 0;
 }

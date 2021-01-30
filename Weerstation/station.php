@@ -28,9 +28,20 @@
         <div class='extraBackBox'>
             <div class='stations'>
                 <form method='post' action=''>
-                    <fieldset>
-                        <legend>Stationnumber</legend>
-                        <input type="text" class="stationTextInput" name="stn" placeholder="e.g. 123456" />
+                    <fieldset style="border-radius: 5px">
+                        <legend >Search</legend>
+                        <fieldset style="border-bottom: none; border-radius: 5px 5px 0 0;padding-bottom: 0;">
+                            <label style="color: white">Stationnumber</label><br>
+                            <input type="text" class="stationTextInput" name="stn" placeholder="e.g. 123456" style="margin-bottom: 10px"/>
+                        </fieldset>
+                        <fieldset style="border-bottom: none; margin-top: 0">
+                            <label style="color: white">Date</label><br>
+                            <input type="text" class="stationTextInput" name="date" placeholder="e.g. 2021-01-27" style="margin-bottom: 10px">
+                        </fieldset>
+                        <fieldset style="border-radius: 0 0 5px 5px; margin-top: 0">
+                            <label style="color: white">Hour</label><br>
+                            <input type="text" class="stationTextInput" name="hour" placeholder="e.g. 17" style="margin-bottom: 10px">
+                        </fieldset>
                         <input type='submit' class='submitButton' value='Search'>
                     </fieldset>
                 </form>
@@ -41,6 +52,14 @@
             if(isset($_POST['stn'])) {
                 $stn = $_POST['stn'];
             }
+            $date = "";
+            if(isset($_POST['date'])){
+                $date = $_POST['date'];
+            }
+            $hour = "";
+            if(isset($_POST['hour'])){
+                $hour = $_POST['hour'];
+            }
         ?>
         <div class='backbox' >
             <div class ='tab'>
@@ -50,12 +69,12 @@
             </div>
             <?php
 
-                if(!file_exists("data/17_2021-01-27_$stn")){
+                if(!file_exists("data/{$hour}_{$date}_{$stn}")){
                     if($stn != "") {
-                        print("file is non-existant");
+                        print("file is non-existant, {$hour}_{$date}_{$stn}");
                     }
                 }else{
-                    $strJsonFileContents = file_get_contents("data/17_2021-01-27_$stn");
+                    $strJsonFileContents = file_get_contents("data/17_{$date}_{$stn}");
                     $array = json_decode($strJsonFileContents, true);
                     print("<div id='graph' class='tabcontent'>");
                         $dataPoints = array();
