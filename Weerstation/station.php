@@ -52,7 +52,7 @@
             if(isset($_POST['stn'])) {
                 $stn = $_POST['stn'];
             }
-            $date = "";
+            $date = "2021-01-30";
             if(isset($_POST['date'])){
                 $date = $_POST['date'];
             }
@@ -69,20 +69,53 @@
             </div>
             <?php
 
-                if(!file_exists("data/{$hour}_{$date}_{$stn}")){
+                if(!file_exists("data/{$stn}_{$date}")){
                     if($stn != "") {
-                        print("file is non-existant, {$hour}_{$date}_{$stn}");
+                        print("file is non-existant, {$stn}_{$date}");
                     }
                 }else{
-                    $strJsonFileContents = file_get_contents("data/17_{$date}_{$stn}");
-                    $array = json_decode($strJsonFileContents, true);
+                    $strJsonFileContents = file_get_contents("data/{$stn}_{$date}");
+                    $arrayJson = json_decode($strJsonFileContents, true);
+                    $array = [];
+                    $arrayOfHour = [];
+                    if(empty($hour)){
+                        $jsonPercentage = sizeof($arrayJson)*0.6;
+                        $valueOfSteps = round($jsonPercentage/60);
+                        $temp = $valueOfSteps;
+                        $counter = $valueOfSteps-1;
+                        for($j = sizeof($arrayJson)-1; $j > sizeof($arrayJson)-$jsonPercentage; $j--){
+                            $counter++;
+                            if($counter == $valueOfSteps){
+                                array_push($array, $arrayJson[$j]);
+                                $valueOfSteps = $valueOfSteps+$temp;
+                            }
+                        }
+                    }else {
+                        for ($i = 0; $i < sizeof($arrayJson); $i++) {
+                            $temp = $arrayJson[$i]['TIME'];
+                            if (substr($temp, 0, 2) == $hour) {
+                                array_push($arrayOfHour, $arrayJson[$i]);
+                            }
+                        }
+                        $valueOfSteps = round(sizeof($arrayOfHour) / 60);
+                        $temp = $valueOfSteps;
+                        for ($j = 0; $j < sizeof($arrayOfHour); $j++) {
+                            if ($j == $valueOfSteps) {
+                                array_push($array, $arrayOfHour[$j]);
+                                $valueOfSteps = $valueOfSteps + $temp;
+                            }
+                        }
+                    }
+
                     print("<div id='graph' class='tabcontent'>");
                         $dataPoints = array();
                         $dataPointsRain = array();
-                        for($i = 1; $i < 61; $i++){
+                        for($i = 1; $i < sizeof($array); $i++){
                             array_push($dataPoints, array("x" => $i, "y" => $array[$i]["TEMP"]));
                             array_push($dataPointsRain, array("x" => $i, "y" => $array[$i]["PRCP"]));
                         }
+
+
                         print("
                             <div id='chartContainer' style='height: 450px; width: 100%; position: relative;'></div>
                             <div id='chartContainerRain' style='height: 450px; width: 100%; position: relative; padding-top: 10px;'></div>
@@ -152,7 +185,7 @@
 
                 axisX: {
                     interval: 1,
-                    title: "Second",
+                    title: "Minute",
                 },
 
                 data: [{
@@ -174,14 +207,14 @@
                     text: "Rainfall"
                 },
                 axisY: {
-                    title: "Rainfall in mm",
-                    suffix: "mm",
+                    title: "Rainfall in cm",
+                    suffix: "cm",
 
                 },
 
                 axisX: {
                     interval: 1,
-                    title: "Second",
+                    title: "Minute",
                 },
 
                 data: [{
