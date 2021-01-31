@@ -193,10 +193,13 @@
                 axisY: {
                     title: "Temperature in celcius",
                     suffix: "°C",
+                    minimum: -20,
+                    maximum: 28
 
                 },
 
                 axisX: {
+
                     interval: 1,
                     title: "Minute",
                 },
@@ -222,6 +225,8 @@
                 axisY: {
                     title: "Rainfall in cm",
                     suffix: "cm",
+                    maximum: 0.1,
+                    minimum: 0
 
                 },
 
