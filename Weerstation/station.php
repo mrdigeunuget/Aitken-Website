@@ -52,9 +52,12 @@
             if(isset($_POST['stn'])) {
                 $stn = $_POST['stn'];
             }
-            $date = "2021-01-30";
+            $date = "";
             if(isset($_POST['date'])){
                 $date = $_POST['date'];
+            }
+            if($date == "") {
+                $date = "2021-01-30";
             }
             $hour = "";
             if(isset($_POST['hour'])){
@@ -73,44 +76,53 @@
                     if($stn != "") {
                         print("file is non-existant, {$stn}_{$date}");
                     }
-                }else{
+                }else {
                     $strJsonFileContents = file_get_contents("data/{$stn}_{$date}");
                     $arrayJson = json_decode($strJsonFileContents, true);
-                    $array = [];
-                    $arrayOfHour = [];
-                    if(empty($hour)){
-                        $jsonPercentage = sizeof($arrayJson)*0.6;
-                        $valueOfSteps = round($jsonPercentage/60);
-                        $temp = $valueOfSteps;
-                        $counter = $valueOfSteps-1;
-                        for($j = sizeof($arrayJson)-1; $j > sizeof($arrayJson)-$jsonPercentage; $j--){
-                            $counter++;
-                            if($counter == $valueOfSteps){
-                                array_push($array, $arrayJson[$j]);
-                                $valueOfSteps = $valueOfSteps+$temp;
-                            }
-                        }
-                    }else {
-                        for ($i = 0; $i < sizeof($arrayJson); $i++) {
-                            $temp = $arrayJson[$i]['TIME'];
-                            if (substr($temp, 0, 2) == $hour) {
-                                array_push($arrayOfHour, $arrayJson[$i]);
-                            }
-                        }
-                        $valueOfSteps = round(sizeof($arrayOfHour) / 60);
-                        $temp = $valueOfSteps;
-                        for ($j = 0; $j < sizeof($arrayOfHour); $j++) {
-                            if ($j == $valueOfSteps) {
-                                array_push($array, $arrayOfHour[$j]);
-                                $valueOfSteps = $valueOfSteps + $temp;
-                            }
+                    $countEligible = 0;
+                    for ($i = 0; $i < sizeof($arrayJson); $i++) {
+                        if ($arrayJson[$i]['TEMP'] > 28 || $arrayJson[$i]['PRCP'] > 0.01) {
+                            $countEligible++;
                         }
                     }
+                    if ($countEligible > 40) {
+                        print("This station is not eligible");
+                    } else {
+                        $array = [];
+                        $arrayOfHour = [];
+                        if (empty($hour)) {
+                            $jsonPercentage = sizeof($arrayJson) * 0.6;
+                            $valueOfSteps = round($jsonPercentage / 60);
+                            $temp = $valueOfSteps;
+                            $counter = $valueOfSteps - 1;
+                            for ($j = sizeof($arrayJson) - 1; $j > sizeof($arrayJson) - $jsonPercentage; $j--) {
+                                $counter++;
+                                if ($counter == $valueOfSteps) {
+                                    array_push($array, $arrayJson[$j]);
+                                    $valueOfSteps = $valueOfSteps + $temp;
+                                }
+                            }
+                        } else {
+                            for ($i = 0; $i < sizeof($arrayJson); $i++) {
+                                $temp = $arrayJson[$i]['TIME'];
+                                if (substr($temp, 0, 2) == $hour) {
+                                    array_push($arrayOfHour, $arrayJson[$i]);
+                                }
+                            }
+                            $valueOfSteps = round(sizeof($arrayOfHour) / 60);
+                            $temp = $valueOfSteps;
+                            for ($j = 0; $j < sizeof($arrayOfHour); $j++) {
+                                if ($j == $valueOfSteps) {
+                                    array_push($array, $arrayOfHour[$j]);
+                                    $valueOfSteps = $valueOfSteps + $temp;
+                                }
+                            }
+                        }
 
-                    print("<div id='graph' class='tabcontent'>");
+                        print("<div id='graph' class='tabcontent'>");
                         $dataPoints = array();
                         $dataPointsRain = array();
-                        for($i = 1; $i < sizeof($array); $i++){
+                        for ($i = 1; $i < sizeof($array); $i++) {
                             array_push($dataPoints, array("x" => $i, "y" => $array[$i]["TEMP"]));
                             array_push($dataPointsRain, array("x" => $i, "y" => $array[$i]["PRCP"]));
                         }
@@ -120,9 +132,9 @@
                             <div id='chartContainer' style='height: 450px; width: 100%; position: relative;'></div>
                             <div id='chartContainerRain' style='height: 450px; width: 100%; position: relative; padding-top: 10px;'></div>
                             <script src='https://canvasjs.com/assets/script/canvasjs.min.js'></script>");
-                    print("</div>
+                        print("</div>
                            <div id='table' class='tabcontent'>");
-                        if(!empty($strJsonFileContents)) {
+                        if (!empty($strJsonFileContents)) {
                             print("<table class = stationTable>");
                             for ($i = 0; $i < 60; $i++) {
                                 print("<tr>");
@@ -160,11 +172,12 @@
                                 isset($array[$i]["WNDDIR"]) ? print("<td><div class='tooltip'>{$array[$i]["WNDDIR"]}<div class='tooltiptext'>Wind direction in degrees</div></div></td>") : print("<td></td>");
                                 print("</tr>");
                             }
-                        }else {
+                        } else {
                             print("There is no data available for this station");
                         }
                         print("</table>");
-                    print("</div");
+                        print("</div");
+                    }
                 }
             ?>
         </div>
