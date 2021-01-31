@@ -14,6 +14,7 @@
             <div class='btn-group'>
                 <a href="index.php">Home</a>
                 <a class="active" href="station.php">Station</a>
+                <a href="download.php">Download</a>
                 <?php
                 $sessienummerextra = $_SESSION['persoon'];
                 if(empty($sessienummerextra)){
