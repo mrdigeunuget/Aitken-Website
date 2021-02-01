@@ -87,7 +87,7 @@
     <div class='stations'>
         <?php
         include 'country_names.php';
-        print("<form method='post' action=''><fieldset><legend>Country</legend><select id='solarCountry' class='selectCountry' name='solarCountry'>");
+        print("<form method='post' action='solar_data.php'><fieldset><legend>Sonar panels</legend><select id='solarCountry' class='selectCountry' name='solarCountry'>");
         for($i=0; $i < sizeof($stationsCountry); $i++) {
             if ($stationsCountry[$i] == 'SRI LANKA' || $stationsCountry[$i] == 'INDIA') {
                 print("<option value='{$stationsCountry[$i]}'>$stationsCountry[$i]</option>");
@@ -96,36 +96,6 @@
         print("</select ><input type='submit' class='submitButton' value='Select Country'></fieldset></form>");
         ?>
     </div>
-    <?php
-
-    if(isset($_POST['solarCountry'])) {
-        $stationland = $_POST['solarCountry'];
-        echo "<form method='post' action='solar_data.php'>";
-        print ("<table class='stationTable'>
-                                        <tr>
-                                            <th>Number</th>
-                                            <th>Name</th>
-                                            <th>Country</th>
-                                            <th>Latitude</th>
-                                            <th>Longitude</th>
-                                            <th>Elevation</th>
-                                        </tr>");
-        for ($i = 0; $i < sizeof($stationInformation); $i++) {
-            if ($stationInformation[$i]['country'] == $stationland) {
-                print ("<tr>
-                                            <td>{$stationInformation[$i]['stn']}</td>
-                                            <td><button type='submit' class='stnButton' name='stn' value='{$stationInformation[$i]['stn']}'>{$stationInformation[$i]['name']}</button></td>
-                                            <td>{$stationInformation[$i]['country']}</td>
-                                            <td>{$stationInformation[$i]['latitude']}</td>
-                                            <td>{$stationInformation[$i]['longitude']}</td>
-                                            <td>{$stationInformation[$i]['elevation']}</td>
-                                        </tr>");
-            }
-        }
-        print ("</form></table>");
-    }
-
-    ?>
 </div>
 </body>
 </html>

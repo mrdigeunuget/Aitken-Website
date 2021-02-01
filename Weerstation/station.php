@@ -95,7 +95,12 @@
                             $jsonPercentage = sizeof($arrayJson) * 0.6;
                             $valueOfSteps = round($jsonPercentage / 60);
                             $temp = $valueOfSteps;
-                            $counter = $valueOfSteps - 1;
+
+                            if($valueOfSteps == 1){
+                                $counter = $valueOfSteps;
+                            }else {
+                                $counter = $valueOfSteps - 1;
+                            }
                             for ($j = sizeof($arrayJson) - 1; $j > sizeof($arrayJson) - $jsonPercentage; $j--) {
                                 $counter++;
                                 if ($counter == $valueOfSteps) {

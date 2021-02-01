@@ -13,13 +13,12 @@ if($gebruikersnaam=="admin" && $wachtwoord == "admin") {
                       alert('Login was succesfull');
                       window.location.href='index.php';
                      </script>");
+} else {
+    print ("<script>
+                      alert('Wrong password or username, try again');
+                      window.location.href='login.php';
+                     </script>");
 }
-//}else {
-//    print ("<script>
-//                      alert('Wrong password or username, try again');
-//                      window.location.href='login.php';
-//                     </script>");
-//}
 ?>
 </body>
 </html>
