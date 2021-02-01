@@ -15,6 +15,7 @@
                 <a href="index.php">Home</a>
                 <a href="station.php">Station</a>
                 <a class="active" href="download.php">Download</a>
+                <a href="solar_data.php">Solar panels</a>
                 <?php
                 $sessienummerextra = $_SESSION['persoon'];
                 if(empty($sessienummerextra)){

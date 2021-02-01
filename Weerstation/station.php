@@ -15,6 +15,7 @@
                 <a href="index.php">Home</a>
                 <a class="active" href="station.php">Station</a>
                 <a href="download.php">Download</a>
+                <a href="solar_data.php">Solar panels</a>
                 <?php
                 $sessienummerextra = $_SESSION['persoon'];
                 if(empty($sessienummerextra)){
@@ -142,7 +143,7 @@
                            <div id='table' class='tabcontent'>");
                         if (!empty($strJsonFileContents)) {
                             print("<table class = stationTable>");
-                            for ($i = 0; $i < 60; $i++) {
+                            for ($i = 0; $i < sizeof($array); $i++) {
                                 print("<tr>");
                                 if ($i == 0) {
                                     print("    <th>STN</th>
@@ -166,7 +167,7 @@
                                 isset($array[$i]["DATE"]) ? print("<td>{$array[$i]["DATE"]}</td>") : print("<td></td>");
                                 isset($array[$i]["TIME"]) ? print("<td>{$array[$i]["TIME"]}</td>") : print("<td></td>");
                                 isset($array[$i]["TEMP"]) ? print("<td><div class='tooltip'>{$array[$i]["TEMP"]}<div class='tooltiptext'>Temperature in Celsius</div></div></td>") : print("<td></td>");
-                                isset($array[$i]["DEWP"]) ? print("<td><div class='tooltip'>{$array[$i]["DEWP"]}<div class='tooltiptext'>Dew percentage</div></div></td>") : print("<td></td>");
+                                isset($array[$i]["DEWP"]) ? print("<td><div class='tooltip'>{$array[$i]["DEWP"]}<div class='tooltiptext'>Dew point in Celsius</div></div></td>") : print("<td></td>");
                                 isset($array[$i]["STP"]) ? print("<td><div class='tooltip'>{$array[$i]["STP"]}<div class='tooltiptext'>Air pressure in mbar at station level</div></div></td>") : print("<td></td>");
                                 isset($array[$i]["SLP"]) ? print("<td><div class='tooltip'>{$array[$i]["SLP"]}<div class='tooltiptext'>Air pressure in mbar at sea level</div></div></td>") : print("<td></td>");
                                 isset($array[$i]["VISIB"]) ? print("<td><div class='tooltip'>{$array[$i]["VISIB"]}<div class='tooltiptext'>Visibility in km</div></div></td>") : print("<td></td>");

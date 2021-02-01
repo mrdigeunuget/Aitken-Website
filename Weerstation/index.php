@@ -13,6 +13,7 @@
         <a class="active" href="index.php">Home</a>
         <a href="station.php">Station</a>
         <a href="download.php">Download</a>
+        <a href="solar_data.php">Solar panels</a>
         <?php
         $sessienummerextra = $_SESSION['persoon'];
         if(empty($sessienummerextra)){
@@ -30,7 +31,7 @@
         <?php
         include 'country_names.php';
         include 'country_data.php';
-        print("<form method='post' action=''><fieldset><legend>Country</legend><select id='country' class='selectCountry' name='country'>");
+        print("<form method='post' action=''><fieldset style='border-radius: 5px'><legend>Country</legend><select id='country' class='selectCountry' name='country'>");
         for($i=0; $i < sizeof($stationsCountry); $i++) {
             print("<option value='{$stationsCountry[$i]}'>$stationsCountry[$i]</option>");
         }
@@ -87,7 +88,7 @@
     <div class='stations'>
         <?php
         include 'country_names.php';
-        print("<form method='post' action='solar_data.php'><fieldset><legend>Sonar panels</legend><select id='solarCountry' class='selectCountry' name='solarCountry'>");
+        print("<form method='post' action='solar_data.php'><fieldset style='border-radius: 5px'><legend>Solar panels</legend><select id='solarCountry' class='selectCountry' name='solarCountry'>");
         for($i=0; $i < sizeof($stationsCountry); $i++) {
             if ($stationsCountry[$i] == 'SRI LANKA' || $stationsCountry[$i] == 'INDIA') {
                 print("<option value='{$stationsCountry[$i]}'>$stationsCountry[$i]</option>");
