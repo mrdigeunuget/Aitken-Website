@@ -57,8 +57,8 @@
                 $stn = $stationInformation[$i]['stn'];
                 #$date nog verandert worden nar dag van vandaag
                 $date = "2021-01-30";
-                if (file_exists("data/{$stn}_{$date}")) {
-                    $strJsonFileContents = file_get_contents("data/{$stn}_{$date}");
+                if (file_exists("/home/group8/jsonfiles/{$stn}_{$date}")) {
+                    $strJsonFileContents = file_get_contents("/home/group8/jsonfiles/{$stn}_{$date}");
                     $arrayJson = json_decode($strJsonFileContents, true);
                     $countEligible = 0;
                     for ($j = 0; $j < sizeof($arrayJson); $j++) {

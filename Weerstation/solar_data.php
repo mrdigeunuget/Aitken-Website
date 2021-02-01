@@ -67,8 +67,8 @@
             $c7 = pow(10, -3) * 1.22874;
             $c8 = pow(10, -4) * 8.5282;
             $c9 = pow(10, -6) * -1.99;
-            if (file_exists("data/{$stn}_{$date}")) {
-                $strJsonFileContents = file_get_contents("data/{$stn}_{$date}");
+            if (file_exists("/home/group8/jsonfiles/{$stn}_{$date}")) {
+                $strJsonFileContents = file_get_contents("/home/group8/jsonfiles/{$stn}_{$date}");
                 $arrayJson = json_decode($strJsonFileContents, true);
                 for ($k = 0; $k < sizeof($arrayJson); $k++) {
                     if ($stn == $arrayJson[$k]['STN']) {

@@ -7,7 +7,7 @@
 <?php
 $gebruikersnaam = $_POST['user'];
 $wachtwoord = $_POST['password'];
-if($gebruikersnaam=="admin" && $wachtwoord == "admin") {
+if($gebruikersnaam=="admin@aitken-spence.com" && $wachtwoord == "rqN6vA?A9F") {
     $_SESSION['persoon'] = 1;
     print ("<script>
                       alert('Login was succesfull');

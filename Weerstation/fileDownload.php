@@ -4,7 +4,7 @@
         if(file_exists("data/".$file)) {
 
 
-            $strJsonFileContents = file_get_contents("data/" . $file);
+            $strJsonFileContents = file_get_contents("/home/group8/jsonfiles/" . $file);
             $arrayJson = json_decode($strJsonFileContents, true);
 
             header('Content-type: application/octet-stream');

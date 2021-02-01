@@ -54,7 +54,7 @@
             if(isset($_POST['date'])){
                 $date = $_POST['date'];
             }
-            if(!file_exists("data/{$stn}_{$date}")){
+            if(!file_exists("/home/group8/jsonfiles/{$stn}_{$date}")){
                 if($stn != "") {
                     print("file is non-existant, {$stn}_{$date}");
                 }

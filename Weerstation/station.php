@@ -74,12 +74,12 @@
             </div>
             <?php
 
-                if(!file_exists("data/{$stn}_{$date}")){
+                if(!file_exists("/home/group8/jsonfiles/{$stn}_{$date}")){
                     if($stn != "") {
                         print("file is non-existant, {$stn}_{$date}");
                     }
                 }else {
-                    $strJsonFileContents = file_get_contents("data/{$stn}_{$date}");
+                    $strJsonFileContents = file_get_contents("/home/group8/jsonfiles/{$stn}_{$date}");
                     $arrayJson = json_decode($strJsonFileContents, true);
                     $countEligible = 0;
                     for ($i = 0; $i < sizeof($arrayJson); $i++) {
